@@ -3,7 +3,7 @@ package shop.mtcoding.jwtstudy.controller;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +16,16 @@ import shop.mtcoding.jwtstudy.model.UserRepository;
 @RequiredArgsConstructor
 public class UserController {
     private final UserRepository userRepository;
+
+    @GetMapping("/user") // 인증 필요
+    public ResponseEntity<?> user(){
+        return ResponseEntity.ok().body("접근 성공");
+    }
+
+    @GetMapping("/") // 인증 불필요
+    public ResponseEntity<?> main() {
+        return ResponseEntity.ok().body("접근 성공");
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(User user) {
